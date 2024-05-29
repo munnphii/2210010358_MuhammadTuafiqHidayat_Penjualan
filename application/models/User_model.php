@@ -19,10 +19,15 @@ class User_Model extends CI_Model
             'email' => htmlspecialchars($this->input->post('email'), true),
             'full_name' => htmlspecialchars($this->input->post('full_name'), true),
             'phone' => htmlspecialchars($this->input->post('phone'), true),
-            'alamat' => htmlspecialchars($this->input->post('alamat'), true),
+            'address' => htmlspecialchars($this->input->post('alamat'), true),
             'role' => htmlspecialchars($this->input->post('role'), true),
             'is_active' => 1,
         );
         return $this->db->insert($this->_table, $data);
     }    
+
+    public function getById($id)
+    {
+        return $this->db->get_where($this->_table, ["id" => $id])->row();
+    }
 }

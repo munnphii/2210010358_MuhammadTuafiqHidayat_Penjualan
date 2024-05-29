@@ -32,10 +32,20 @@ class User extends CI_Controller
 
     public function save()
     {
-        $this->User_model->save();
+        $this->User_Model->save();
         if($this->db->affected_rows()>0){
-            $this->session->set-flashdata("success","Data user berhasil DiSimpan");
+            $this->session->set_flashdata("success","Data user berhasil DiSimpan");
         }
        redirect('user');
+    }
+
+    public function getedit($id)
+    {
+        $data = array(
+            'title' => 'Update Data User',
+            'user' => $this->User_Model->getById($id),
+            'content' => 'user/edit_form'
+        );
+        $this->load->view('template/main',$data);
     }
 }
